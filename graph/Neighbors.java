@@ -7,14 +7,14 @@ package graph;
 
 /**
  * The Neighbors class is provided solely as a way to allow the method
- * WUGraph.getNeighbors() to return two arrays at once.  Do NOT use this class
+ * WUGraph.getNeighbors() to return two arrays at once. Do NOT use this class
  * for any other purpose.
- *
+ * 
  * Since this class is NOT an abstract data type, but is merely a collection of
  * data, all fields are public.
  */
 
 public class Neighbors {
-  public Object[] neighborList;
-  public int[] weightList;
+	public Object[] neighborList;
+	public int[] weightList;
 }

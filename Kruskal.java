@@ -14,7 +14,7 @@ public class Kruskal {
 	 * minSpanTree() returns a WUGraph that represents the minimum spanning tree
 	 * of the WUGraph g. The original WUGraph g is NOT changed.
 	 */
-	public static WUGraph minSpanTree(WUGraph g) {
+    public static WUGraph minSpanTree(WUGraph g) {
 		return new WUGraph();
 	}
 

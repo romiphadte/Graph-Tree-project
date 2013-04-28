@@ -139,6 +139,9 @@ public class WUGraph {
      * Running time: O(d), where d is the degree of "vertex".
      */
     public Neighbors getNeighbors(Object vertex) {
+        if (adjList.find(vertex) == null) {
+            return null;
+        }
         HashTableChained table = (HashTableChained) ((Entry) adjList.find(vertex)).value();
         Neighbors nb = new Neighbors();
         if (table.size() == 0) {

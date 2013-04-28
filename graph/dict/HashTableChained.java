@@ -124,9 +124,6 @@ public class HashTableChained implements Dictionary {
    **/
 
   public Entry insert(Object key, Object value) {
-      if ((double) size / (double) table.length > 0.75) {
-          resize(2);
-      }
       int bucket = compFunction(key.hashCode());
       //System.out.println("table length: " + table.length + " bucket #" + bucket);
       Entry entry = new HashEntry(key, value);
@@ -136,6 +133,9 @@ public class HashTableChained implements Dictionary {
       }
       table[bucket].insertFront(entry);
       size++;
+      if ((double) size / (double) table.length > 0.75) {
+          resize(2);
+      }
       return entry;
   }
 
@@ -202,9 +202,6 @@ public class HashTableChained implements Dictionary {
    */
 
   public Entry remove(Object key) {
-      if ((double) size / (double) table.length < 0.25) {
-          resize(.5);
-      }
       int bucket = compFunction(key.hashCode());
       DList list = table[bucket];
       DListNode node;
@@ -216,6 +213,9 @@ public class HashTableChained implements Dictionary {
               if (match.key().equals(key)) {
                   list.remove(node);
                   size--;
+                  if ((double) size / (double) table.length < 0.25) {
+                      resize(.5);
+                  }
                   return match;
               }
               node = list.next(node);
@@ -223,6 +223,40 @@ public class HashTableChained implements Dictionary {
       }
       return null;
   }
+
+  public Object[] keys() {
+      Object[] obj = new Object[size];
+      int objcount = 0;
+      for (int i = 0; i < table.length; i++) {
+          if (table[i] != null) {
+              DList list = table[i];
+              DListNode node = list.front();
+              while (node != null) {
+                  obj[objcount] = ((HashEntry) node.item).key;
+                  objcount++;
+                  node = list.next(node);
+              }
+          }
+      }
+      return obj;
+  }
+
+  /*public Object[] values() {
+      Object[] obj = new Object[size];
+      int objcount = 0;
+      for (int i = 0; i < table.length; i++) {
+          if (table[i] != null) {
+              DList list = table[i];
+              DListNode node = list.front();
+              while (node != null) {
+                  obj[objcount] = ((HashEntry) node.item).value;
+                  objcount++;
+                  node = list.next(node);
+              }
+          }
+      }
+      return obj;
+  }*/
 
   /**
    *  Remove all entries from the dictionary.

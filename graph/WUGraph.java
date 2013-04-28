@@ -86,14 +86,13 @@ public class WUGraph {
      */
     public void removeVertex(Object vertex) {
         if (adjList.find(vertex) != null) {
-            Entry entry = adjList.remove(vertex);
+            Entry entry = adjList.find(vertex);
             HashTableChained table = (HashTableChained) entry.value();
             Object[] edges = table.keys();
             for (int i = 0; i < edges.length; i++) {
-                if (!edges[i].equals(vertex)) {
-                    adjList.removeAdj(edges[i], vertex);
-                }
+                adjList.removeAdj(edges[i], vertex);
             }
+            adjList.remove(vertex);
         }
     }
 
@@ -115,7 +114,10 @@ public class WUGraph {
      * Running time: O(1).
      */
     public int degree(Object vertex) {
-        return ((HashTableChained) ((Entry) adjList.find(vertex)).value()).size();
+        if (adjList.find(vertex) != null) {
+            return ((HashTableChained) ((Entry) adjList.find(vertex)).value()).size();
+        }
+        return 0;
     }
 
     /**

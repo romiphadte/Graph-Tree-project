@@ -28,10 +28,28 @@ public class AdjacencyList extends HashTableChained {
      * @param target the connected vertex object
      */
     public void removeAdj(Object key, Object target) {
-        HashTableChained table1 = (HashTableChained) ((HashEntry) find(key)).value();
+        /*HashTableChained table1 = (HashTableChained) ((HashEntry) find(key)).value();
         if (table1.remove(target) != null) {
+            edges--;
+            if (find(target) != null) {
+                HashTableChained table2 = (HashTableChained) ((HashEntry) find(target)).value();
+                table2.remove(key);
+            }
+        }*/
+        boolean removed = false;
+        if (find(key) != null) {
+            HashTableChained table1 = (HashTableChained) ((HashEntry) find(key)).value();
+            if (table1.remove(target) != null) {
+                removed = true;
+            }
+        }
+        if (find(target) != null) {
             HashTableChained table2 = (HashTableChained) ((HashEntry) find(target)).value();
-            table2.remove(key);
+            if (table2.remove(key) != null) {
+                removed = true;
+            }
+        }
+        if (removed == true) {
             edges--;
         }
     }

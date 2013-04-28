@@ -1,6 +1,6 @@
 /* Entry.java */
 
-package dict;
+package graph.dict;
 
 /**
  *  A class for dictionary entries.

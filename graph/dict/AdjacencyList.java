@@ -1,5 +1,5 @@
-package dict;
-import list.*;
+package graph.dict;
+import graph.list.*;
 
 public class AdjacencyList extends HashTableChained {
 

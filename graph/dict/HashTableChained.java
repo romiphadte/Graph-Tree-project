@@ -1,7 +1,7 @@
 /* HashTableChained.java */
 
-package dict;
-import list.*;
+package graph.dict;
+import graph.list.*;
 
 /**
  *  HashTableChained implements a Dictionary as a hash table with chaining.

@@ -1,6 +1,6 @@
 /* HashEntry.java */
 
-package dict;
+package graph.dict;
 
 /**
  *  A class for Hash entries.

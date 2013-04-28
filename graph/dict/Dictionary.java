@@ -1,6 +1,6 @@
 /* Dictionary.java */
 
-package dict;
+package graph.dict;
 
 /**
  *  An interface for (unordered) dictionary ADTs.

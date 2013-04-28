@@ -1,8 +1,8 @@
 /* WUGraph.java */
 
 package graph;
-import list.*;
-import dict.*;
+import graph.list.*;
+import graph.dict.*;
 
 /**
  * The WUGraph class represents a weighted, undirected graph. Self-edges are

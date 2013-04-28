@@ -139,12 +139,15 @@ public class WUGraph {
     public Neighbors getNeighbors(Object vertex) {
         HashTableChained table = (HashTableChained) ((Entry) adjList.find(vertex)).value();
         Neighbors nb = new Neighbors();
+        if (table.size() == 0) {
+            return null;
+        }
         nb.neighborList = new Object[table.size()];
         nb.weightList = new int[table.size()];
         Object[] edges = table.keys();
         for (int i = 0; i < edges.length; i++) {
             nb.neighborList[i] = edges[i];
-            nb.weightList[i] = ((int) ((Entry) table.find(i)).value());
+            nb.weightList[i] = ((int) ((Entry) table.find(edges[i])).value());
         }
         return nb;
     }
@@ -160,9 +163,6 @@ public class WUGraph {
      */
     public void addEdge(Object u, Object v, int weight) {
         adjList.insertAdj(u, v, weight);
-        if (!u.equals(v)) {
-            adjList.insertAdj(v, u, weight);
-        }
     }
 
     /**
@@ -174,9 +174,6 @@ public class WUGraph {
      */
     public void removeEdge(Object u, Object v) {
         adjList.removeAdj(u, v);
-        if (!u.equals(v)) {
-            adjList.removeAdj(v, u);
-        }
     }
 
     /**

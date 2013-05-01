@@ -28,7 +28,8 @@ public class Kruskal {
 		for (int i = 0; i < v.length; i++) { //TAKES V time
 			table.insert(v[i], i);
 			Neighbors n = g.getNeighbors(v[i]);
-			for (int ii = 0; ii < n.neighborList.length; ii++) {  
+			for (int ii = 0; ii < n.neighborList.length; ii++) {   //might take E time when considering the fact this is in another
+																	//for loop
 				if (!t.isVertex(n.neighborList[ii])) {   //if edge wasn't added before
 					Edge e = new Edge();
 					e.v1 = v[i];

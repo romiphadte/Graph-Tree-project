@@ -4,7 +4,7 @@
 /* YOUR SUBMISSION MUST WORK CORRECTLY WITH _OUR_ COPY OF THIS FILE. */
 
 package graph;
-
+ 
 /**
  * The Neighbors class is provided solely as a way to allow the method
  * WUGraph.getNeighbors() to return two arrays at once. Do NOT use this class

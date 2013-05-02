@@ -5,37 +5,40 @@ public class AdjacencyList extends HashTableChained {
 
     public int edges;
 
+    /**
+     * Creates a new adjacency list with a prime number of buckets
+     *
+     * @param sizeEstimate estimated size (because true size will be nearest prime)
+     */
     public AdjacencyList(int sizeEstimate) {
         super(sizeEstimate);
         edges = 0;
     }
 
+    /**
+     * Constructs a new adjacency list with a default size
+     */
     public AdjacencyList() {
         super();
         edges = 0;
     }
 
+    /**
+     * Returns the number of edges stored in this adjacency list
+     */
     public int edges() {
         return edges;
     }
 
     /**
-     * assuming that key and target are not null
-     * removes target from the list of adjacent values attached to key
-     * "key" (key) "value" (list of adjacent values). basically remove target from "value"
+     * if target and key both exist (not null)
+     * removes target from key's hash table of adjacent vertices and vice versa
+     * only decrements edges once even if two remove operations are perfomed
      *
      * @param key the original vertex object
      * @param target the connected vertex object
      */
     public void removeAdj(Object key, Object target) {
-        /*HashTableChained table1 = (HashTableChained) ((HashEntry) find(key)).value();
-        if (table1.remove(target) != null) {
-            edges--;
-            if (find(target) != null) {
-                HashTableChained table2 = (HashTableChained) ((HashEntry) find(target)).value();
-                table2.remove(key);
-            }
-        }*/
         boolean removed = false;
         if (find(key) != null) {
             HashTableChained table1 = (HashTableChained) ((HashEntry) find(key)).value();
@@ -54,9 +57,10 @@ public class AdjacencyList extends HashTableChained {
         }
     }
     /**
-     * assuming that key and target are not null
-     * inserts and edge that consists of target and weight into the corresponding dlist
-     * to the hashentry of key
+     * if target and key both exist (not null)
+     * inserts an edge that consists of target and weight into the corresponding hash tables
+     * in the hashentry of key and vice versa
+     * if there is already an entry that exists, it is removed and a new entry inserted
      *
      * @param key the original vertex object
      * @param target the connected vertex object

@@ -45,10 +45,13 @@ public class HashTableChained implements Dictionary {
       size = 0; 
   }
 
+  /**
+   * Find a prime near n
+   *
+   * @param n target number
+   */
   private int findPrime(int n) {
-      //System.out.print("n: " + n);
       n = (n * 105) / 100;
-      //System.out.print(" n': " + n);
       int p = n;
       boolean[] prime = new boolean[n + 1];
       for (int i = 2; i <= n; i++) {
@@ -64,7 +67,6 @@ public class HashTableChained implements Dictionary {
       while (p > 2 && !prime[p]) {
           p--;
       }
-      //System.out.println(" p: " + p);
       return p;
   }
 
@@ -81,7 +83,6 @@ public class HashTableChained implements Dictionary {
       int p = findPrime((n * n) + (50 * n) + 100);
       int a = n * 177 / 100;
       int b = a * 123 / 100;
-      //System.out.println("a: " + a + " hashcode: " + code + " b: " + b + " p: " + p + " n: " + n + " bucket: " + (a * code));
       int result = ((a * code + b) % p) % n;
       if (result < 0) {
           return (result * -1);
@@ -125,7 +126,6 @@ public class HashTableChained implements Dictionary {
 
   public Entry insert(Object key, Object value) {
       int bucket = compFunction(key.hashCode());
-      //System.out.println("table length: " + table.length + " bucket #" + bucket);
       Entry entry = new HashEntry(key, value);
       if (table[bucket] == null) {
           DList list = new DList();
@@ -241,23 +241,6 @@ public class HashTableChained implements Dictionary {
       return obj;
   }
 
-  /*public Object[] values() {
-      Object[] obj = new Object[size];
-      int objcount = 0;
-      for (int i = 0; i < table.length; i++) {
-          if (table[i] != null) {
-              DList list = table[i];
-              DListNode node = list.front();
-              while (node != null) {
-                  obj[objcount] = ((HashEntry) node.item).value;
-                  objcount++;
-                  node = list.next(node);
-              }
-          }
-      }
-      return obj;
-  }*/
-
   /**
    *  Remove all entries from the dictionary.
    */
@@ -289,30 +272,4 @@ public class HashTableChained implements Dictionary {
       System.out.println("number of collisions: " + collisions);
   }
 
-  public static void main(String[] args) {
-      HashTableChained table = new HashTableChained(5);
-      table.insert("one", 1);
-      table.printCollisions();
-      table.insert("noe", 2);
-      table.insert("eon", 3);
-      table.insert("eee", 4);
-      table.printCollisions();
-      table.insert("two", 5);
-      table.insert("twe", 6);
-      table.insert("wot", 7);
-      table.insert("tow", 8);
-      table.insert("thre", 9);
-      table.insert("twu", 10);
-      table.printCollisions();
-      table.remove("eon");
-      table.remove("eee");
-      table.remove("noe");
-      table.remove("thre");
-      table.remove("twu");
-      table.remove("wot");
-      table.remove("one");
-      table.remove("two");
-      table.remove("twe");
-      table.printCollisions();
-  }
 }

@@ -53,12 +53,6 @@ public class WUGraph {
 	 * Running time: O(|V|).
 	 */
 	public Object[] getVertices() {
-		/*
-		 * Object[] vertices = new Object[vList.size()]; DListNode node =
-		 * vList.front(); for (int i = 0; i < vList.size(); i++) { vertices[i] =
-		 * ((Vertex) node.item).item; node = vList.next(node); } return
-		 * vertices;
-		 */
 		return adjList.keys();
 	}
 
@@ -70,7 +64,6 @@ public class WUGraph {
 	 * Running time: O(1).
 	 */
 	public void addVertex(Object vertex) {
-		//check if already in, if not, add to adjacencylist
 		if (adjList.find(vertex) == null) {
 			adjList.insert(vertex, new HashTableChained(1));
 		}

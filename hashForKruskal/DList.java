@@ -231,58 +231,5 @@ public class DList {
     }
     return result + "]";
   }
-	
-	/*public static void main(String[] args) {
-		LockDList ls = new LockDList();
-		System.out.println("List: " + ls);
-		System.out.println("length: " + ls.length());
-
-		ls.remove(ls.front());
-		System.out.println("List: " + ls);
-		System.out.println("length: " + ls.length());
-
-		ls.remove(ls.back());
-		System.out.println("List: " + ls);
-		System.out.println("length: " + ls.length());
-
-		ls.insertFront(1);
-		System.out.println("List: " + ls);
-		System.out.println("length: " + ls.length());
-
-		ls.insertBack(2);
-		System.out.println("List: " + ls);
-		System.out.println("length: " + ls.length());
-
-		ls.insertAfter(3, ls.back());
-		System.out.println("List: " + ls);
-		System.out.println("length: " + ls.length());
-
-		ls.insertBefore(0, ls.front());
-		System.out.println("List: " + ls);
-		System.out.println("length: " + ls.length());
-
-		ls.remove(ls.front());
-		System.out.println("List: " + ls);
-		System.out.println("length: " + ls.length());
-
-		ls.remove(ls.back());
-		System.out.println("List: " + ls);
-		System.out.println("length: " + ls.length());
-
-		ls.remove(ls.front());
-		System.out.println("List: " + ls);
-		System.out.println("length: " + ls.length());
-
-		ls.remove(ls.back());
-		System.out.println("List: " + ls);
-		System.out.println("length: " + ls.length());
-
-		ls.remove(ls.front());
-		System.out.println("List: " + ls);
-		System.out.println("length: " + ls.length());
-
-		ls.remove(ls.back());
-		System.out.println("List: " + ls);
-		System.out.println("length: " + ls.length());
-	}*/
 }
+	

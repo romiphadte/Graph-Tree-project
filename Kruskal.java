@@ -1,7 +1,6 @@
 /* Kruskal.java */
 
-import list.LinkedQueue;
-import list.QueueEmptyException;
+import list.*;
 import graph.*;
 import hashForKruskal.*;
 import set.*;
@@ -20,22 +19,21 @@ public class Kruskal {
 	public static WUGraph minSpanTree(WUGraph g) {
 
 		WUGraph t = new WUGraph();
-		Object[] v = g.getVertices();
+		Object[] v = g.getVertices();       //takes V time
 		LinkedQueue edges = new LinkedQueue();
 		DisjointSets trees = new DisjointSets(v.length);
 		HashTableChained table = new HashTableChained();
 
-		for (int i = 0; i < v.length; i++) { //TAKES V time
-			table.insert(v[i], i);
-			Neighbors n = g.getNeighbors(v[i]);
-			for (int ii = 0; ii < n.neighborList.length; ii++) {   //might take E time when considering the fact this is in another
-																	//for loop
-				if (!t.isVertex(n.neighborList[ii])) {   //if edge wasn't added before
+		for (int i = 0; i < v.length; i++) { //TAKES E time worst case.
+			table.insert(v[i], i);          
+			Neighbors n = g.getNeighbors(v[i]);   //O(d) where d is degree of vertex. 
+			for (int ii = 0; ii < n.neighborList.length; ii++) {//reason outer loop takes E time. 
+				if (!t.isVertex(n.neighborList[ii])) {  
 					Edge e = new Edge();
 					e.v1 = v[i];
 					e.v2 = n.neighborList[ii];
 					e.weight = n.weightList[ii];
-					edges.enqueue(e);
+					edges.enqueue(e);                
 				}
 			}
 			t.addVertex(v[i]);
@@ -43,24 +41,21 @@ public class Kruskal {
 		ListSorts.mergeSort(edges); //TAKES E LOG E time. 
 
 		int edgecounter = 0;
-
-		while (edgecounter < v.length - 1) { //TAKES CLOSE TO V time? <E time. 
+		while (edgecounter < v.length - 1) { //Takes max E time. 
 			try {
 				Edge e = (Edge) edges.dequeue();
-				int root1=trees.find((int)((Integer) table.find(e.v1).value()));
+				int root1=trees.find((int)((Integer) table.find(e.v1).value())); 
 				int root2=trees.find((int)((Integer) table.find(e.v2).value()));
-				if (root1 != root2) {
-					t.addEdge(e.v1, e.v2, e.weight);
-					trees.union(root1, root2);
+				if (root1 != root2) {   
+					t.addEdge(e.v1, e.v2, e.weight); 
+					trees.union(root1, root2);    //merge if not previously connected.
 					edgecounter++;
 				}
 			} catch (QueueEmptyException e) {
 				e.printStackTrace();
 			}
 		}
-
 		return t;
-
 	}
 
 }

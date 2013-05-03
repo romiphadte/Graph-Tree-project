@@ -224,6 +224,9 @@ public class HashTableChained implements Dictionary {
       return null;
   }
 
+  /**
+   * return array of the objects of each key in the hash table
+   */
   public Object[] keys() {
       Object[] obj = new Object[size];
       int objcount = 0;
